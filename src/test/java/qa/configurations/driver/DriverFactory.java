@@ -20,7 +20,7 @@ public class DriverFactory {
 
     public static void createDriver() {
 
-        switch (ANDROID) {
+        switch (IOS) {
             case IOS:
                 driver = new IOSDriverManager().createInstance();
                 break;

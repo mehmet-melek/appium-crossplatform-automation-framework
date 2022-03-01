@@ -26,14 +26,12 @@ public class IOSDriverManager {
         try {
             Configuration configuration = ConfigurationManager.getConfiguration();
             DesiredCapabilities capabilities = new DesiredCapabilities();
-
             capabilities.setCapability(PLATFORM_NAME, MobilePlatform.IOS);
-            capabilities.setCapability(PLATFORM_VERSION, configuration.androidPlatformVersion());
+            capabilities.setCapability(PLATFORM_VERSION, configuration.iosPlatformVersion());
             capabilities.setCapability(DEVICE_NAME, configuration.iosDeviceName());
             capabilities.setCapability(AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
             capabilities.setCapability(APP, new File(configuration.iosAppPath()).getAbsolutePath());
-            capabilities.setCapability(IOSMobileCapabilityType.APP_NAME, configuration.iosAppName());
-            driver = new IOSDriver<MobileElement>(new URL(configuration.serverUri()), capabilities);
+            driver = new IOSDriver<>(new URL(configuration.serverUri()), capabilities);
             driver.manage()
                     .timeouts()
                     .implicitlyWait(15, TimeUnit.SECONDS);

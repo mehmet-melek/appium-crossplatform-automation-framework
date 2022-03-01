@@ -3,6 +3,8 @@ package qa.pages;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,15 +14,19 @@ public class LoginPage extends PageBase {
     }
 
     @AndroidFindBy(accessibility = "test-Username")
+    @iOSXCUITFindBy(accessibility = "test-Username")
     private MobileElement userNameTextField;
 
     @AndroidFindBy(accessibility = "test-Password")
+    @iOSXCUITFindBy(accessibility = "test-Password")
     private MobileElement passwordTextField;
 
     @AndroidFindBy(accessibility = "test-LOGIN")
+    @iOSXCUITFindBy(accessibility = "test-LOGIN" )
     private MobileElement loginButton;
 
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc='test-Error message']/android.widget.TextView")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='test-Error message']")
     private MobileElement loginErrorMessage;
 
     public void validateOnLoginPage() {
@@ -43,7 +49,7 @@ public class LoginPage extends PageBase {
     }
 
     public void validateErrorMessage(String errorMessage) {
-        assertEquals(getElementText(loginErrorMessage), errorMessage);
+        assertEquals(errorMessage,getElementText(loginErrorMessage));
     }
 
     public ProductsPage directLogin(String validUserName, String validPassword) {

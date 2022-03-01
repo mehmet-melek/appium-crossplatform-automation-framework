@@ -3,6 +3,7 @@ package qa.pages;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class ProductsPage extends PageBase {
     private static final String pageHeader = "PRODUCTS";
 
     @AndroidFindBy(xpath = "//*[@content-desc='test-Cart drop zone']/*/android.widget.TextView")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='PRODUCTS']" )
     private MobileElement productsPageHeader;
 
     @AndroidFindBy(xpath = "(//*[@content-desc='test-Item title'])")

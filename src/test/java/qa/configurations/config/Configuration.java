@@ -19,11 +19,11 @@ public interface Configuration extends Config {
     @Key("ios.app.path")
     String iosAppPath();
 
-    @Key("ios.app.appName")
-    String iosAppName();
-
     @Key("ios.device.name")
     String iosDeviceName();
+
+    @Key("ios.platform.version")
+    String iosPlatformVersion();
 
     @Key("android.app.path")
     String androidAppPath();
