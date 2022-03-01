@@ -2,6 +2,7 @@ package qa.configurations.driver;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.AutomationName;
 import io.appium.java_client.remote.IOSMobileCapabilityType;
@@ -13,31 +14,31 @@ import qa.configurations.config.ConfigurationManager;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.remote.MobileCapabilityType.*;
 
-public class IOSDriverManager implements MobileDriver {
+public class IOSDriverManager {
 
     private AppiumDriver<MobileElement> driver;
 
-    @Override
-    public AppiumDriver<MobileElement> createInstance(String udid, String platformVersion) {
+    protected AppiumDriver<MobileElement> createInstance() {
         try {
             Configuration configuration = ConfigurationManager.getConfiguration();
             DesiredCapabilities capabilities = new DesiredCapabilities();
 
-            capabilities.setCapability(UDID, udid);
             capabilities.setCapability(PLATFORM_NAME, MobilePlatform.IOS);
-            capabilities.setCapability(PLATFORM_VERSION, platformVersion);
+            capabilities.setCapability(PLATFORM_VERSION, configuration.androidPlatformVersion());
             capabilities.setCapability(DEVICE_NAME, configuration.iosDeviceName());
             capabilities.setCapability(AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
             capabilities.setCapability(APP, new File(configuration.iosAppPath()).getAbsolutePath());
             capabilities.setCapability(IOSMobileCapabilityType.APP_NAME, configuration.iosAppName());
-
-            driver = new IOSDriver<>(new URL(gridUrl()), capabilities);
+            driver = new IOSDriver<MobileElement>(new URL(configuration.serverUri()), capabilities);
+            driver.manage()
+                    .timeouts()
+                    .implicitlyWait(15, TimeUnit.SECONDS);
         } catch (MalformedURLException e) {
         }
-
         return driver;
     }
 }

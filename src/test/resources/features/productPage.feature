@@ -40,13 +40,5 @@ Feature: Product Page Tests
     And User clicks on Remove button
     Then the number on cart icon should be 2
 
-  Scenario:Add To Cart button is pressed twice then Remove button is pressed twice
-    Given User is at the product page
-    When User clicks on Add To Cart button
-    And User clicks on Add To Cart button
-    And User clicks on Remove button
-    And User clicks on Remove button
-    Then the number on cart icon should be empty
-
 
 

@@ -3,13 +3,14 @@ package qa.step_definitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import qa.configurations.driver.DriverFactory;
 import qa.pages.LoginPage;
 import qa.pages.ProductsPage;
 
 
 public class LoginPageStepDefinitions {
-    LoginPage loginPage = new LoginPage(DriverSetup.getDriver());
-    ProductsPage productsPage = new ProductsPage(DriverSetup.getDriver());
+    LoginPage loginPage = new LoginPage(DriverFactory.getDriver());
+    ProductsPage productsPage = new ProductsPage(DriverFactory.getDriver());
 
     @Given("User is at the login page")
     public void user_is_at_the_login_page() {

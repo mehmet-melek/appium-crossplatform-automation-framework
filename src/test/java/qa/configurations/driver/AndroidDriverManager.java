@@ -12,29 +12,33 @@ import qa.configurations.config.ConfigurationManager;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.remote.AndroidMobileCapabilityType.*;
 import static io.appium.java_client.remote.MobileCapabilityType.*;
 import static org.openqa.selenium.remote.CapabilityType.PLATFORM_NAME;
 
-public class AndroidDriverManager implements MobileDriver {
+public class AndroidDriverManager {
 
     private AppiumDriver<MobileElement> driver;
 
 
-    @Override
-    public AppiumDriver<MobileElement> createInstance(String udid, String platformVersion) {
+    protected AppiumDriver<MobileElement> createInstance() {
         try {
             Configuration configuration = ConfigurationManager.getConfiguration();
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability(PLATFORM_NAME, MobilePlatform.ANDROID);
-            capabilities.setCapability(PLATFORM_VERSION, platformVersion);
+            capabilities.setCapability(PLATFORM_VERSION, configuration.androidPlatformVersion());
             capabilities.setCapability(AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
             capabilities.setCapability(DEVICE_NAME, configuration.androidDeviceName());
             capabilities.setCapability(APP, new File(configuration.androidAppPath()).getAbsolutePath());
             capabilities.setCapability(APP_PACKAGE, configuration.androidAppPackage());
             capabilities.setCapability(APP_ACTIVITY, configuration.androidAppActivity());
-            driver = new AndroidDriver<>(new URL(gridUrl()), capabilities);
+            driver = new AndroidDriver<>(new URL("http://127.0.0.1:4444/wd/hub"), capabilities);
+            driver.manage()
+                    .timeouts()
+                    .implicitlyWait(15, TimeUnit.SECONDS);
+
         } catch (MalformedURLException e) {
         }
 

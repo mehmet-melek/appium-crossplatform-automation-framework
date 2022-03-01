@@ -7,17 +7,14 @@ import org.aeonbits.owner.Config.LoadType;
 @LoadPolicy(LoadType.MERGE)
 @Config.Sources({
         "system:properties",
-        "classpath:conf/general.properties",
-        "classpath:conf/android.properties",
-        "classpath:conf/ios.properties"})
+        "classpath:configurations/general.properties",
+        "classpath:configurations/android.properties",
+        "classpath:configurations/ios.properties"})
 
 public interface Configuration extends Config {
 
-    @Key("run.ip")
-    String serverIp();
-
-    @Key("run.port")
-    String serverPort();
+    @Key("server.uri")
+    String serverUri();
 
     @Key("ios.app.path")
     String iosAppPath();

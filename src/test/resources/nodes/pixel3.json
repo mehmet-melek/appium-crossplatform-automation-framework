@@ -6,8 +6,7 @@
       "platformVersion": "12",
       "maxInstance": 3,
       "platformName": "Android",
-      "automationName": "UiAutomator2",
-      "systemPort": "8201"
+      "automationName": "UiAutomator2"
     }
   ],
   "configuration": {

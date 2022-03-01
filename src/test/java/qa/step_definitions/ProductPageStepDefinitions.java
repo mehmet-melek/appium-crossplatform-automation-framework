@@ -3,12 +3,13 @@ package qa.step_definitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import qa.configurations.driver.DriverFactory;
 import qa.pages.ProductDetailPage;
 import qa.pages.ProductsPage;
 
 public class ProductPageStepDefinitions {
-    ProductsPage productsPage = new ProductsPage(DriverSetup.getDriver());
-    ProductDetailPage productDetailPage = new ProductDetailPage(DriverSetup.getDriver());
+    ProductsPage productsPage = new ProductsPage(DriverFactory.getDriver());
+    ProductDetailPage productDetailPage = new ProductDetailPage(DriverFactory.getDriver());
 
     @Given("User is at the product page")
     public void user_is_at_the_product_page() {
@@ -50,8 +51,4 @@ public class ProductPageStepDefinitions {
         productsPage.pressRemoveButton();
     }
 
-    @Then("the number on cart icon should be empty")
-    public void the_number_on_cart_icon_should_be_empty() {
-        productsPage.validateCardIconNumberIsEmpty();
-    }
 }

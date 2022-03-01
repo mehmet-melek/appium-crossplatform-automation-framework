@@ -2,27 +2,49 @@ package qa.configurations.driver;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import org.openqa.selenium.Platform;
+
+import static io.appium.java_client.remote.MobilePlatform.ANDROID;
+import static io.appium.java_client.remote.MobilePlatform.IOS;
 
 public class DriverFactory {
 
-    public AppiumDriver<MobileElement> createInstance(String platform, String udid, String platformVersion) {
-        AppiumDriver<MobileElement> driver;
-        Platform mobilePlatform = Platform.valueOf(platform.toUpperCase());
+    public static AppiumDriver<MobileElement> driver;
 
-        switch (mobilePlatform) {
+    public static AppiumDriver<MobileElement> getDriver() {
+        if (driver == null) {
+            createDriver();
+        }
+        return driver;
+    }
+
+
+    public static void createDriver() {
+
+        switch (ANDROID) {
             case IOS:
-                driver = new IOSDriverManager().createInstance(udid, platformVersion);
+                driver = new IOSDriverManager().createInstance();
                 break;
 
             case ANDROID:
-                driver = new AndroidDriverManager().createInstance(udid, platformVersion);
+                driver = new AndroidDriverManager().createInstance();
                 break;
 
             default:
                 throw new IllegalStateException(
                         "Platform not supported! Check if you set ios or android on the parameter.");
         }
-        return driver;
+    }
+
+    public static void killDriver() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+    }
+
+    public static void resetApp() {
+        if (driver != null) {
+            driver.resetApp();
+        }
     }
 }
