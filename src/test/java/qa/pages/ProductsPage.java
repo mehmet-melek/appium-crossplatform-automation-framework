@@ -24,20 +24,23 @@ public class ProductsPage extends PageBase {
     private MobileElement productsPageHeader;
 
     @AndroidFindBy(xpath = "(//*[@content-desc='test-Item title'])")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name='test-Item title'])")
     private List<MobileElement> shownProductTitles;
 
     @AndroidFindBy(xpath = "(//*[@content-desc='test-Item'])/*/android.widget.ImageView")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name='\uDB81\uDF41']//XCUIElementTypeOther/XCUIElementTypeImage)")
     private List<MobileElement> shownProductImages;
 
     @AndroidFindBy(xpath = "(//*[@content-desc='test-ADD TO CART'])/android.widget.TextView")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name='test-ADD TO CART'])")
     private List<MobileElement> shownAddToCardButtons;
 
     @AndroidFindBy(xpath = "//*[@content-desc='test-REMOVE']/android.widget.TextView")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name='test-REMOVE'])")
     private List<MobileElement> shownRemoveButtons;
 
     @AndroidFindBy(xpath = "//*[@content-desc='test-Cart']/*/android.widget.TextView")
     private MobileElement cardIconAfterItemAdded;
-
 
     public ProductsPage validateOnProductPage() {
         assertEquals(pageHeader, getElementText(productsPageHeader));

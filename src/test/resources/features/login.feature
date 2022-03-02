@@ -1,4 +1,4 @@
-@IOS
+@IOS @ANDROID
 Feature: Login Features
 
   Scenario: Login successfully with valid user and valid password
