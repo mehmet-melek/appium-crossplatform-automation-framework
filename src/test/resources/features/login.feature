@@ -1,4 +1,4 @@
-@IOS @ANDROID
+@ios @android
 Feature: Login Features
 
   Scenario: Login successfully with valid user and valid password
@@ -23,4 +23,4 @@ Feature: Login Features
     Given User is at the login page
     When User enters username as "invalid_user" and password as "invalid_sauce"
     And User clicks on login button
-    Then User should see "Username and password do not match any user in this service!!!." error message
+    Then User should see "Username and password do not match any user in this service." error message

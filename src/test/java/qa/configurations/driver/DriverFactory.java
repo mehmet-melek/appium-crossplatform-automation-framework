@@ -3,9 +3,6 @@ package qa.configurations.driver;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-import static io.appium.java_client.remote.MobilePlatform.ANDROID;
-import static io.appium.java_client.remote.MobilePlatform.IOS;
-
 public class DriverFactory {
 
     public static AppiumDriver<MobileElement> driver;
@@ -17,21 +14,20 @@ public class DriverFactory {
         return driver;
     }
 
-
     public static void createDriver() {
-
-        switch (IOS) {
-            case IOS:
+        String platform = System.getProperty("platform").toUpperCase();
+        switch (platform) {
+            case "IOS":
                 driver = new IOSDriverManager().createInstance();
                 break;
 
-            case ANDROID:
+            case "ANDROID":
                 driver = new AndroidDriverManager().createInstance();
                 break;
 
             default:
-                throw new IllegalStateException(
-                        "Platform not supported! Check if you set ios or android on the parameter.");
+                throw new IllegalStateException
+                        ("Platform not supported! Check if you set ios or android on the parameter.");
         }
     }
 

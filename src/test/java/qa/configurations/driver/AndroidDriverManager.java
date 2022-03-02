@@ -30,18 +30,17 @@ public class AndroidDriverManager {
             capabilities.setCapability(PLATFORM_NAME, MobilePlatform.ANDROID);
             capabilities.setCapability(PLATFORM_VERSION, configuration.androidPlatformVersion());
             capabilities.setCapability(AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
-            capabilities.setCapability(DEVICE_NAME, configuration.androidDeviceName());
+            //capabilities.setCapability(DEVICE_NAME, configuration.androidDeviceName());
             capabilities.setCapability(APP, new File(configuration.androidAppPath()).getAbsolutePath());
             capabilities.setCapability(APP_PACKAGE, configuration.androidAppPackage());
             capabilities.setCapability(APP_ACTIVITY, configuration.androidAppActivity());
-            driver = new AndroidDriver<>(new URL("http://127.0.0.1:4444/wd/hub"), capabilities);
+            driver = new AndroidDriver<>(new URL(configuration.serverUri()), capabilities);
             driver.manage()
                     .timeouts()
                     .implicitlyWait(15, TimeUnit.SECONDS);
 
         } catch (MalformedURLException e) {
         }
-
         return driver;
     }
 

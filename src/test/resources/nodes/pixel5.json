@@ -4,7 +4,7 @@
     {
       "browserName": "Android",
       "platformVersion": "12",
-      "deviceName": "Pixel3",
+      "deviceName": "Pixel5",
       "maxInstance": 1,
       "platformName": "Android",
       "automationName": "UiAutomator2"

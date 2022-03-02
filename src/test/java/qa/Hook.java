@@ -2,6 +2,7 @@ package qa;
 
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
+import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -21,8 +22,7 @@ public class Hook {
             byte[] data = Files.readAllBytes(Path.of(System.getProperty("screenshot.rel.path") + "/Screenshot.png"));
             scenario.attach(data, "image/png", "My screenshot");
         }
-        DriverFactory.getDriver().closeApp();
-        DriverFactory.getDriver().launchApp();
+        DriverFactory.resetApp();
     }
 
     @AfterAll
