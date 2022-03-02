@@ -15,13 +15,13 @@ public class DriverFactory {
     }
 
     public static void createDriver() {
-        String platform = System.getProperty("platform").toUpperCase();
+        String platform = System.getProperty("cucumber.filter.tags");
         switch (platform) {
-            case "IOS":
+            case "@ios":
                 driver = new IOSDriverManager().createInstance();
                 break;
 
-            case "ANDROID":
+            case "@android":
                 driver = new AndroidDriverManager().createInstance();
                 break;
 

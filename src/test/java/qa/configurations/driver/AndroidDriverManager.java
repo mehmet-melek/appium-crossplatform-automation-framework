@@ -30,7 +30,6 @@ public class AndroidDriverManager {
             capabilities.setCapability(PLATFORM_NAME, MobilePlatform.ANDROID);
             capabilities.setCapability(PLATFORM_VERSION, configuration.androidPlatformVersion());
             capabilities.setCapability(AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
-            //capabilities.setCapability(DEVICE_NAME, configuration.androidDeviceName());
             capabilities.setCapability(APP, new File(configuration.androidAppPath()).getAbsolutePath());
             capabilities.setCapability(APP_PACKAGE, configuration.androidAppPackage());
             capabilities.setCapability(APP_ACTIVITY, configuration.androidAppActivity());

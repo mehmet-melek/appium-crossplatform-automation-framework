@@ -61,11 +61,6 @@
             <version>7.0.0-RC1</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.github.saikrishna321</groupId>
-            <artifactId>AppiumTestDistribution</artifactId>
-            <version>12.0.3</version>
-        </dependency>
 
         <dependency>
             <groupId>tech.grasshopper</groupId>
@@ -88,9 +83,6 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M5</version>
                     <configuration>
-                        <parallel>methods</parallel>
-                        <threadCount>2</threadCount>
-                        <perCoreThreadCount>false</perCoreThreadCount>
                         <systemPropertyVariables>
                             <!--Extent report configuration-->
                             <report.url>${user.dir}/target/${reportFileName}/report.html</report.url>

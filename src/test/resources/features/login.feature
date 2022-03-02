@@ -21,6 +21,6 @@ Feature: Login Features
 
   Scenario: Failed login with invalid user and invalid password
     Given User is at the login page
-    When User enters username as "invalid_user" and password as "invalid_sauce"
+    When User enters username as "invalid_user" and password as "invalid_password"
     And User clicks on login button
     Then User should see "Username and password do not match any user in this service." error message
