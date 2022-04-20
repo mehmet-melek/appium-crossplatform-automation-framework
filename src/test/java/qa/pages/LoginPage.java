@@ -29,10 +29,6 @@ public class LoginPage extends PageBase {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='test-Error message']")
     private MobileElement loginErrorMessage;
 
-    public void validateOnLoginPage() {
-
-    }
-
     public LoginPage enterUserName(String userName) {
         sendKeys(userNameTextField, userName);
         return this;
